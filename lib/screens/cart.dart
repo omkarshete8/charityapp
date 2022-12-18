@@ -69,7 +69,7 @@ class _CartState extends ConsumerState<Cart> {
         ),
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Order summary"),
+          title: Text("Order Summary"),
           leading: Padding(
               padding: EdgeInsets.all(10),
               child: IconButton(
@@ -81,164 +81,195 @@ class _CartState extends ConsumerState<Cart> {
                 },
               )),
         ),
-        body: ListView(
-          children: charitiesName.map((e) {
-            return Card(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8.0),
+        body: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              color: Color.fromARGB(255, 73, 116, 180),
+              width: double.infinity,
+              child: Text(
+                "Jackpot: 100,000,0000T,  Next Draw: Jan 21 10:00PM",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 13),
               ),
-              borderOnForeground: true,
-              color: Colors.white,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Expanded(
               child: Container(
-                child: ExpansionTile(
-                  title: Text(
-                    "Charity Donation",
-                  ),
-                  textColor: Colors.black,
-                  children: [
-                    Column(
-                      children: [
-                        ListTile(
-                          leading: Icon(
-                            Icons.abc,
-                            size: 70,
+                padding: EdgeInsets.all(3),
+                child: ListView(
+                  children: charitiesName.map((e) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      borderOnForeground: true,
+                      color: Colors.white,
+                      child: Container(
+                        child: ExpansionTile(
+                          title: Text(
+                            "Charity Donation",
                           ),
-                          style: ListTileStyle.list,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 2,
-                              color: Colors.white,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          subtitle: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-                            child: Text("Entries: " +
-                                ref
-                                    .watch(e["provider"] as ProviderListenable)
-                                    .completeData
-                                    .length
-                                    .toString()),
-                          ),
-                          title: Padding(
-                            padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-                            child: Text(
-                              e["name"].toString(),
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: (() {}),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                  child: Text(
-                                    "Your tickets: " +
+                          textColor: Colors.black,
+                          children: [
+                            Column(
+                              children: [
+                                ListTile(
+                                  leading: Icon(
+                                    Icons.abc,
+                                    size: 70,
+                                  ),
+                                  style: ListTileStyle.list,
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      width: 2,
+                                      color: Colors.white,
+                                    ),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  subtitle: Padding(
+                                    padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                                    child: Text("Entries: " +
                                         ref
                                             .watch(e["provider"]
                                                 as ProviderListenable)
                                             .completeData
                                             .length
-                                            .toString(),
-                                    style: TextStyle(color: Colors.black),
+                                            .toString()),
+                                  ),
+                                  title: Padding(
+                                    padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                                    child: Text(
+                                      e["name"].toString(),
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                child: TextButton(
-                                  onPressed: (() {}),
-                                  child: Text("Add Ticket+"),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          height: 100,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                ...List.generate(
-                                  ref
-                                      .watch(
-                                          e["provider"] as ProviderListenable)
-                                      .completeData
-                                      .length,
-                                  ((newindex) {
-                                    return Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(2, 0, 2, 4),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                3, 0, 10, 0),
-                                            child: Text(
-                                              "${newindex + 1}.",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          ...List.generate(5, (index) {
-                                            return Circle(
-                                                colorScheme: grey,
-                                                num: ref
-                                                        .watch(e["provider"]
-                                                            as ProviderListenable)
-                                                        .completeData[newindex]
-                                                    [index]);
-                                          }),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                            child: IconButton(
-                                              icon: Icon(Icons.delete),
-                                              onPressed: () {
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TextButton(
+                                        onPressed: (() {}),
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 0, 0, 0),
+                                          child: Text(
+                                            "Your tickets: " +
                                                 ref
                                                     .watch(e["provider"]
                                                         as ProviderListenable)
-                                                    .removeData(newindex);
-                                                setState(() {});
-                                              },
-                                            ),
-                                          )
-                                        ],
+                                                    .completeData
+                                                    .length
+                                                    .toString(),
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ),
                                       ),
-                                    );
-                                  }),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 0, 10, 0),
+                                        child: TextButton(
+                                          onPressed: (() {}),
+                                          child: Text("Add Ticket+"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
+                                Divider(
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  height: 100,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        ...List.generate(
+                                          ref
+                                              .watch(e["provider"]
+                                                  as ProviderListenable)
+                                              .completeData
+                                              .length,
+                                          ((newindex) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      2, 0, 2, 4),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(3, 0, 10, 0),
+                                                    child: Text(
+                                                      "${newindex + 1}.",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                  ...List.generate(5, (index) {
+                                                    return Circle(
+                                                        colorScheme: grey,
+                                                        num: ref
+                                                                .watch(e[
+                                                                        "provider"]
+                                                                    as ProviderListenable)
+                                                                .completeData[
+                                                            newindex][index]);
+                                                  }),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            0, 0, 0, 0),
+                                                    child: IconButton(
+                                                      icon: Icon(Icons.delete),
+                                                      onPressed: () {
+                                                        ref
+                                                            .watch(e["provider"]
+                                                                as ProviderListenable)
+                                                            .removeData(
+                                                                newindex);
+                                                        setState(() {});
+                                                      },
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  ],
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
-            );
-          }).toList(),
+            ),
+          ],
         ),
       ),
     );
