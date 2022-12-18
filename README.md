@@ -4,5 +4,5 @@ Flutter app.
 
 Packages used:
 
-    go_router
-    flutter_riverpod
+    go_router for navigation between screens
+    flutter_riverpod for state management
