@@ -1,3 +1,3 @@
 # charityapp
 
-A new Flutter project.
+Flutter app.
