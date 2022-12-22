@@ -9,14 +9,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-List<int> b = [];
-int _randomNumber1 = 0;
-int _randomNumber2 = 0;
-int _randomNumber3 = 0;
-int _randomNumber4 = 0;
-int _randomNumber5 = 0;
-List list = [];
-
 class DoctorsWithoutBorders extends ConsumerStatefulWidget {
   const DoctorsWithoutBorders({super.key});
 
@@ -26,6 +18,13 @@ class DoctorsWithoutBorders extends ConsumerStatefulWidget {
 }
 
 class _DoctorsWithoutBordersState extends ConsumerState<DoctorsWithoutBorders> {
+  List<int> b = [];
+  int _randomNumber1 = 0;
+  int _randomNumber2 = 0;
+  int _randomNumber3 = 0;
+  int _randomNumber4 = 0;
+  int _randomNumber5 = 0;
+  List list = [];
   void generateRandomNumber() {
     // create a list say of 16 numbers.
     list = List.generate(36, (i) => i + 1);
